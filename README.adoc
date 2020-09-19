@@ -1,0 +1,28 @@
+= Zenn用
+
+== 連携後Zennでデプロイ手順(デプロイブランチはdevelopにしている)
+
+.選択したデプロイブランチをpushするだけ
+----
+$ git push origin develop
+----
+
+== 記事はこんな感じ(articlesというディレクトリ)
+
+----
+$ tree articles/
+articles/
+└── helloworld-post.md
+----
+
+== 本はこんな感じでいける(booksというディレクトリ)
+
+----
+$ tree books/
+books/
+└── helloworld-book
+    ├── 1.md
+    ├── 2.md
+    ├── config.yaml
+    └── cover.png
+----

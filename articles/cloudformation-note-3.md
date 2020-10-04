@@ -77,6 +77,57 @@ $ aws s3 rb s3://TEMP_S3バケット名 --force
 $ rm $(CFN_OUTPUT_FILE_NAME)
 ```
 
+main.yaml
+```yaml
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "3 public subnets and 3 intra subnets"
+
+##############################################################################
+# パラメータ
+##############################################################################
+Parameters:
+  Env:
+    Description: Enter the environment. (prd/dev/stg)
+    Type: String
+    Default: dev
+    AllowedValues:
+      - dev
+      - prd
+      - stg
+
+##############################################################################
+# リソース
+##############################################################################
+Resources:
+  VPC:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: vpc.yaml
+      Parameters:
+        Env: !Ref Env
+  PublicSubnets:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: public-subnets.yaml
+      Parameters:
+        Env: !Ref Env
+        VpcId: !GetAtt VPC.Outputs.VpcId
+  IntraSubnets:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: intra-subnets.yaml
+      Parameters:
+        Env: !Ref Env
+        VpcId: !GetAtt VPC.Outputs.VpcId
+
+##############################################################################
+# Outputs
+##############################################################################
+Outputs:
+  DefaultSecurityGroupId:
+    Value: !GetAtt VPC.Outputs.DefaultSecurityGroupId
+```
+
 vpc.yaml
 
 ```yaml

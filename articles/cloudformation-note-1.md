@@ -3,10 +3,8 @@ title: CFnでVPCを作ったり消したりする～基本～
 emoji: 📝
 type: tech
 topics: [CloudFormation]
-published: false
+published: true
 ---
-
-# CFnでVPCを作ったり消したりする～基本～
 
 ### CFnって何？とかなら以下の教材の無料の範囲のサンプル部分がわかりやすかった（確認したときはSection3まで無料）
 

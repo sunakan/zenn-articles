@@ -3,7 +3,7 @@ title: 特定のS3へ、特定のディレクトリ以下へ読み書き許可�
 emoji: 📝
 type: tech
 topics: [IAM]
-published: false
+published: true
 ---
 
 ## ざっくり要件
@@ -13,7 +13,9 @@ published: false
 - アクションとしては、ディレクトリ作成、アップロード、ダウンロード、閲覧
 - 他のS3バケット名も見せない
 - IP制限等は別途
-- MFA付きは今回は除外
+- MFA付き等は今回は除外
+- バケット名は参考から名前を流用して `AWSDOC-EXAMPLE-BUCKET`
+- S3バケットは東京リージョン
 
 ## 個人的なポイント
 
@@ -21,7 +23,7 @@ published: false
 - S3バケットのアクセス許可も `パブリックアクセスをすべてブロック` のままでよい
 - 特定のURLでアクセスする必要がある
   - https://s3.console.aws.amazon.com/s3/buckets/AWSDOC-EXAMPLE-BUCKET?region=ap-northeast-1&prefix=app/
-  - S3のダッシュボードからは遷移できない
+  - S3のバケット一覧からは遷移できない(権限がないため。一部だけ閲覧できるやり方を見つけられなかった)
 
 ## IAMポリシー
 
